@@ -1,0 +1,64 @@
+ .growth-center .am-list-body{
+     background-color: rgba(0, 0, 0, 0);
+ }
+
+.growth-center .growth-item{
+    border-radius: 2vw;
+    box-sizing: border-box;
+    margin-bottom: 4vw;
+}
+
+.pet-care .title{
+    margin-bottom: 3vw;
+}
+
+.pet-treasure .treasure-item{
+    padding: 3vw 0;
+}
+.pet-treasure .treasure-item:not(:last-child)::after{
+    content: '';
+    background-color: #ddd;
+    display: block;
+    width: 100%;
+    height: 1px;
+    transform: scaleY(0.5);
+    margin-top: 3vw;
+    margin-bottom: -3vw;
+}
+
+.pet-treasure .treasure-item .treasure-des.am-flexbox{
+    height: 17.685vw;
+}
+
+.pet-treasure .treasure-img{
+    width: 24.074vw;
+    height: 17.685vw;
+    overflow: hidden;
+}
+.pet-treasure .treasure-img img{
+    display: block;
+    width: 100%;
+}
+
+.pet-knowledge .knowledge-item{
+    position: relative;
+    height:35.648vw;
+    overflow: hidden;
+    margin-bottom: 2vw;
+    border-radius: 2vw;
+}
+.pet-knowledge .knowledge-item img{
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+.pet-knowledge .knowledge-item .knowledge-item-cover{
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    line-height: 35.648vw;
+    text-align: center;
+    z-index: 2;
+}

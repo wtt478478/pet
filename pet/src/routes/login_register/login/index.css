@@ -1,0 +1,22 @@
+.pink-box{
+    width: 100vw;
+    height: 100vh;
+    background-color: pink; 
+    overflow: hidden;
+}
+.login-box{
+    width: 80%;
+    margin: 0 auto;
+    margin-top: 50%;
+}
+.login-box>div{
+    margin-bottom: 20px;
+    border-radius: 25px;
+}
+.login-box .am-button{
+    border-radius: 25px;
+    margin-bottom: 8px;
+}
+.login-box .am-list-item .am-input-label.am-input-label-5{
+    width: 25px;
+}

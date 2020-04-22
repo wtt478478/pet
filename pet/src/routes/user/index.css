@@ -1,0 +1,35 @@
+.pet-user{
+    width: 100%;
+    width: 100%;
+    /* padding: 2vw 3vw; */
+    box-sizing: border-box;
+}
+
+.pet-user i{
+    font-size:6vw;
+}
+
+.pet-user .daily i{
+    color:#7bd8fc ;
+}
+
+.pet-user .pet-user-list .title{
+    padding: 2vw 3vw;
+    font-size: 4vw;
+}
+
+.pet-user .pet-user-list .am-flexbox .am-flexbox-item{
+    border-right: 1px solid #f9f9f9;
+}
+.pet-user .pet-user-list .am-flexbox .am-flexbox-item:last-child{
+    border: none;
+}
+
+.pet-user .pet-user-list .am-flexbox-item div{
+    text-align: center;
+}
+
+.pet-user .shopping-mall i{
+    color:#fe9783 ;
+}
+

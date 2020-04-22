@@ -1,0 +1,48 @@
+
+html, body{
+  width: 100%;
+  height: 100%;
+  background-color: #f4f4f4;
+  color: #666;
+}
+
+a {
+  color: #666;
+}
+
+
+.bc-white{
+  background-color: #fff;
+}
+
+.pet-padding{
+  padding: 2vw 3vw 4vw 3vw;
+}
+
+.divider-line{
+  height: 1px;
+  width: 100%;
+  transform: scaleY(0.5);
+  background-color: #eee;
+}
+
+.am-navbar{
+  background-color: #f1483c;
+}
+
+#tab-bar.demo {
+  display: flex;
+  flex-direction: column;
+}
+
+#tab-bar .demoName {
+  height: 40px;
+}
+
+#tab-bar .demo-preview-item .am-tab-bar{
+  background-color: white;
+}
+
+.text-center{
+  text-align: center;
+}
