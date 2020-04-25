@@ -1,0 +1,26 @@
+
+.layout .am-navbar-left{
+    flex-grow: 1;
+}
+.layout .am-navbar-title{
+    flex-grow: 8;
+    flex-shrink: 0;
+}
+.layout .am-navbar-right{
+    flex-grow: 1;
+}
+
+.layout .am-search{
+    height: 30px;
+    background-color: rgba(0, 0, 0, 0.1);
+    border-radius: 2vw;
+}
+.layout .am-search-input{
+    background-color: rgba(0, 0, 0, 0);
+}
+.layout .am-search-cancel{
+    height: 30px;
+    line-height: 30px;
+    color: #666;
+    
+}

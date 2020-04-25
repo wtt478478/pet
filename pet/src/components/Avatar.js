@@ -1,19 +1,20 @@
-import React, { Component } from 'react';
-import './Avatar.css'
+import React from 'react';
+import PropTypes from 'prop-types'
 
-class Avatar extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {  }
-    }
-    render() { 
-        return ( 
-            <div className="pet-avatar">
-                <img src="../images/avatar.jpg" />
-            
-            </div>
-         );
-    }
+const Avatar = ({ src,width}) => {
+
+    return (
+        <span className="pet-avatar" style={{width:width,height:width, borderRadius: '50%',
+        overflow:'hidden',display:'inline-block'}}>
+            <img src={src} style={{width: '100%'}} />
+
+        </span>
+    );
 }
- 
+
+Avatar.propTypes={
+    src: PropTypes.any.isRequired,
+    width: PropTypes.any.isRequired,
+}
+
 export default Avatar;

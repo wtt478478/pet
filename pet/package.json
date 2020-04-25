@@ -11,6 +11,7 @@
     "dva": "^2.4.1",
     "es6-promise": "^4.2.8",
     "isomorphic-fetch": "^2.2.1",
+    "prop-types": "^15.7.2",
     "rc-form": "^2.4.11",
     "react": "^16.2.0",
     "react-dom": "^16.2.0"

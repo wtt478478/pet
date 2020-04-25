@@ -15,22 +15,13 @@ class User extends Component {
     render() {
         return (
             <div className="pet-user">
-                <NavBar
-                    mode="dark"
-                    leftContent={[
-                        <i key="0" className="anticon_pet anticonerweima"></i>
-                    ]}
-                    rightContent={[
-                        <i key="1" className="anticon_pet anticonfriendaddfill" ></i>
-                    ]}
-                >个人中心</NavBar>
 
                 { /** 个人主页 */}
 
                 <Flex className="homePage pet-padding bc-white" justify="between">
                     <div>
                         <Flex>
-                            <Avatar></Avatar>
+                            <Avatar  src="../images/avatar.jpg" width="18vw"></Avatar>
                             <div style={{ marginLeft: '3vw' }}>
                                 <div>
                                     <span style={{ marginRight: '1vw', fontSize: '4.5vw' }}>好好吃饭</span>

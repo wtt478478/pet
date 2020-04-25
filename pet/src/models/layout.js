@@ -1,7 +1,7 @@
 
 export default {
 
-  namespace: 'example',
+  namespace: 'layout',
 
   state: {},
 
@@ -12,12 +12,14 @@ export default {
 
   effects: {
     *fetch({ payload }, { call, put }) {  // eslint-disable-line
-      yield put({ type: 'save' });
+      yield put({ type: 'navBar' });
     },
   },
 
   reducers: {
-    save(state, action) {
+    navBar(state, action) {
+      console.log(state)
+      console.log(action.payload)
       return { ...state, ...action.payload };
     },
   },

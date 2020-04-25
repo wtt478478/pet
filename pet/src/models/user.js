@@ -1,12 +1,13 @@
-import { login } from "../services/user";
-import {routerRedux} from 'dva'
+import { login, register } from "../services/user";
+import { routerRedux } from 'dva/router'
+import { Toast } from "antd-mobile";
 export default {
 
   namespace: 'user',
 
   state: {
-    tel:'',
-    password:'',
+    id: null,
+    token: '',
   },
 
   subscriptions: {
@@ -14,15 +15,21 @@ export default {
     },
   },
 
-  effects: { 
+  effects: {
     *loginHandle({ payload }, { call, put }) {  // eslint-disable-line
-      const res = yield call(login, payload);
-      console.log(res);
-      // login(res.data.id,res.data.token);
-      if (res.status) {
-        yield put(routerRedux.replace('/community'));
+      const { data } = yield call(login, payload);
+      if (data.status) {
+        yield put(routerRedux.push('/index'));
+      }
+    },
+    *registerHandle({ payload }, { call, put }) {  // eslint-disable-line
+      const { data } = yield call(register, payload);
+      console.log(data);
+      if (data.status) {
+        yield put(routerRedux.push('/login'));
+      }else{
+        Toast.info(data.msg);
       }
     },
   },
-
 };

@@ -13,25 +13,6 @@ class Mall extends Component {
     render() {
         return (
             <div className="pet-mall">
-                {/**头部搜索 */}
-                <NavBar
-                    mode="dark"
-                    leftContent={[
-                        <div key="0" style={{ textAlign: 'center' }}>
-                            <i style={{ fontSize: "5vw" }} className="anticon_pet anticonfenlei" />
-                            <div style={{ fontSize: "2vw" }}>分类</div>
-                        </div>
-                    ]}
-                    rightContent={[
-                        <div key="0" style={{ textAlign: 'center' }}>
-                            <i key="0" style={{ fontSize: "5vw" }} className="anticon_pet anticonxiaoxi" />
-                            <div style={{ fontSize: "2vw" }}>消息</div>
-                        </div>
-
-                    ]}
-                >
-                    <SearchBar style={{ width: '100%' }} placeholder="搜索" maxLength={16} />
-                </NavBar>
 
                 {/**分类 */}
                 <div className="mall-sort bc-white">

@@ -6,14 +6,14 @@
     font-size: 3.148vw;
 }
 .attention{
-    border: 1px solid #ddd;
-    border-radius: 2vw;
-    padding: 1.667vw 2.963vw;
-    text-align: center;
-}
-
-.attention a{
+    padding: 0 1vw;
+    height: 7vw !important;
+    line-height: 7vw !important;
     color: #f14b24;
+    font-size: 12px;
+}
+.attention i{
+    font-size: 12px;
 }
 
 .dynamic-item{

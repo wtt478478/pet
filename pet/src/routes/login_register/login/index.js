@@ -1,6 +1,6 @@
 import React, { Component, useState } from 'react';
 import { InputItem, Button, WhiteSpace, Toast } from 'antd-mobile';
-import { Link, Redirect } from "dva/router";
+import { Link, routerRedux } from "dva/router";
 import { connect } from 'dva';
 import 'antd-mobile/dist/antd-mobile.css';
 import '../../../utils/iconfont/iconfont.css';
@@ -17,7 +17,7 @@ class Login extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            
+
         }
     }
 
@@ -47,15 +47,15 @@ class Login extends Component {
     // 登录
     loginHandle = e => {
         e.preventDefault();
-        
+
         this.props.form.validateFields({ force: true }, (error) => {
             if (!error) {
                 console.log(this.props);
-                console.log(this.props.form.getFieldsValue());
                 let formData = this.props.form.getFieldsValue();
+                console.log(formData);
                 this.props.dispatch({
                     type: 'user/loginHandle',
-                    payload:formData,
+                    payload: formData,
                 });
             } else {
                 console.log('手机号码或密码');
@@ -65,7 +65,7 @@ class Login extends Component {
     }
 
     ReagisterHandle = () => {
-        return;
+        this.props.history.push("/register")
     }
 
     render() {

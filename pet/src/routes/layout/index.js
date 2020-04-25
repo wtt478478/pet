@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'dva';
-import { TabBar } from 'antd-mobile';
+import { TabBar, SearchBar } from 'antd-mobile';
+import PropTypes from 'prop-types';
 
 import 'antd-mobile/dist/antd-mobile.css';
 import '../../utils/iconfont/iconfont.css';
@@ -10,6 +11,7 @@ import User from "../user/index";
 import PetCare from "../petCare/index";
 import Community from "../community/index";
 import Mall from "../mall/index";
+import NavComponent from "../../components/NavComponent";
 
 
 
@@ -17,10 +19,18 @@ class Layout extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      selectedTab: 'greenTab',
+      selectedTab: 'communityTab',
       hidden: false,
       fullScreen: false,
+      navkey:'community',
+      leftContent: [],
+      rightContent: [<i key="0" className="anticon_pet anticonxiangji"></i>],
+      navTitle: '动态'
     };
+  }
+
+  goBack = () => {
+    console.log('goback');
   }
 
   renderContent(pageText) {
@@ -68,86 +78,124 @@ class Layout extends Component {
 
   render() {
     return (
-      <div style={this.state.fullScreen ? { position: 'fixed', height: '100%', width: '100%', top: 0 } : { height: '100vh' }}>
+      <div className="layout">
+        <NavComponent
+          navGoBack={this.goBack}
+          navkey={this.state.navkey}
+          navLeftContent={this.state.leftContent}
+          navRightContent={this.state.rightContent}
+          navTitle={this.state.navTitle}
+        />
 
-        <TabBar
-          unselectedTintColor="#949494"
-          tintColor="#f04d3c"
-          barTintColor="white"
-          hidden={this.state.hidden}
-        >
-          <TabBar.Item
-            title="社区"
-            key="community"
-            icon={<i className="anticon_pet anticonhome1" style={{ fontSize: '6vw' }}></i>}
+        <div style={this.state.fullScreen ? { position: 'fixed', height: '100%', width: '100%', top: 0 } : { height: 'calc(100vh - 45px)' }}>
 
-            selectedIcon={<i className="anticon_pet anticonhome1" style={{ fontSize: '6vw', color: '#f04d3c' }}></i>}
-            selected={this.state.selectedTab === 'blueTab'}
-            onPress={() => {
-              this.setState({
-                selectedTab: 'blueTab',
-              });
-            }}
-            data-seed="logId"
+
+          <TabBar
+            unselectedTintColor="#949494"
+            tintColor="#f04d3c"
+            barTintColor="white"
+            hidden={this.state.hidden}
           >
-            {this.renderContent('community')}
-          </TabBar.Item>
-          <TabBar.Item
-            icon={<i className="anticon_pet anticonsmart-alerts" style={{ fontSize: '6vw' }}></i>}
+            <TabBar.Item
+              title="社区"
+              key="community"
+              icon={<i className="anticon_pet anticonhome1" style={{ fontSize: '6vw' }}></i>}
 
-            selectedIcon={<i className="anticon_pet anticonsmart-alerts" style={{ fontSize: '6vw', color: '#f04d3c' }}></i>}
-            title="养宠"
-            key="petCare"
-            selected={this.state.selectedTab === 'redTab'}
-            onPress={() => {
-              this.setState({
-                selectedTab: 'redTab',
-              });
-            }}
-            data-seed="logId1"
-          >
-            {this.renderContent('petCare')}
-          </TabBar.Item>
-          <TabBar.Item
-            icon={<i className="anticon_pet anticoncart" style={{ fontSize: '6vw' }}></i>}
+              selectedIcon={<i className="anticon_pet anticonhome1" style={{ fontSize: '6vw', color: '#f04d3c' }}></i>}
+              selected={this.state.selectedTab === 'communityTab'}
+              onPress={() => {
+                this.setState({
+                  selectedTab: 'communityTab',
+                  navkey:'community',
+                  leftContent: [],
+                  rightContent: [<i key="0" className="anticon_pet anticonxiangji"></i>],
+                  navTitle: '动态'
+                })
+              }}
+              data-seed="logId"
+            >
+              {this.renderContent('community')}
+            </TabBar.Item>
+            <TabBar.Item
+              icon={<i className="anticon_pet anticonsmart-alerts" style={{ fontSize: '6vw' }}></i>}
 
-            selectedIcon={<i className="anticon_pet anticoncart" style={{ fontSize: '6vw', color: '#f04d3c' }}></i>}
+              selectedIcon={<i className="anticon_pet anticonsmart-alerts" style={{ fontSize: '6vw', color: '#f04d3c' }}></i>}
+              title="养宠"
+              key="petCare"
+              selected={this.state.selectedTab === 'petCareTab'}
+              onPress={() => {
+                this.setState({
+                  selectedTab: 'petCareTab',
+                  navkey:'petCare',
+                  leftContent: [],
+                  rightContent: [],
+                  navTitle: '宠物知识'
+                })
+              }}
+              data-seed="logId1"
+            >
+              {this.renderContent('petCare')}
+            </TabBar.Item>
+            <TabBar.Item
+              icon={<i className="anticon_pet anticoncart" style={{ fontSize: '6vw' }}></i>}
 
-            title="商城"
-            key="mall"
-            selected={this.state.selectedTab === 'greenTab'}
-            onPress={() => {
-              this.setState({
-                selectedTab: 'greenTab',
-              });
-            }}
-          >
-            {this.renderContent('mall')}
-          </TabBar.Item>
-          <TabBar.Item
-            icon={<i className="anticon_pet anticoniconfinder_rabbit-animal-pet-wild-domestic_" style={{ fontSize: '6vw' }}></i>}
+              selectedIcon={<i className="anticon_pet anticoncart" style={{ fontSize: '6vw', color: '#f04d3c' }}></i>}
 
-            selectedIcon={<i className="anticon_pet anticoniconfinder_rabbit-animal-pet-wild-domestic_" style={{ fontSize: '6vw', color: '#f04d3c' }}></i>}
+              title="商城"
+              key="mall"
+              selected={this.state.selectedTab === 'mallTab'}
+              onPress={() => {
+                this.setState({
+                  selectedTab: 'mallTab',
+                  navkey:'mall',
+                  leftContent: [
+                    <div key="0" style={{ textAlign: 'center' }}>
+                      <i style={{ fontSize: "5vw" }} className="anticon_pet anticonfenlei" />
+                      <div style={{ fontSize: "2vw" }}>分类</div>
+                    </div>
+                  ],
+                  rightContent: [
+                    <div key="0" style={{ textAlign: 'center' }}>
+                      <i key="0" style={{ fontSize: "5vw" }} className="anticon_pet anticonxiaoxi" />
+                      <div style={{ fontSize: "2vw" }}>消息</div>
+                    </div>
+                  ],
+                  navTitle: [<SearchBar key="mall" style={{ width: "100%"}} placeholder="搜索" maxLength={16} />]
+                })
+              }}
+            >
+              {this.renderContent('mall')}
+            </TabBar.Item>
+            <TabBar.Item
+              icon={<i className="anticon_pet anticoniconfinder_rabbit-animal-pet-wild-domestic_" style={{ fontSize: '6vw' }}></i>}
 
-            title="个人中心"
-            key="user"
-            selected={this.state.selectedTab === 'yellowTab'}
-            onPress={() => {
-              this.setState({
-                selectedTab: 'yellowTab',
-              });
-            }}
-          >
-            {this.renderContent('user')}
-          </TabBar.Item>
-        </TabBar>
+              selectedIcon={<i className="anticon_pet anticoniconfinder_rabbit-animal-pet-wild-domestic_" style={{ fontSize: '6vw', color: '#f04d3c' }}></i>}
 
-      </div >
-    );
+              title="个人中心"
+              key="user"
+              selected={this.state.selectedTab === 'userTab'}
+              onPress={() => {
+                this.setState({
+                  selectedTab: 'userTab',
+                  navkey:'user',
+                  leftContent: [
+                    <i key="0" className="anticon_pet anticonerweima"></i>
+                  ],
+                  rightContent: [
+                    <i key="1" className="anticon_pet anticonfriendaddfill" ></i>
+                  ],
+                  navTitle: '个人中心'
+                })
+              }}
+            >
+              {this.renderContent('user')}
+            </TabBar.Item>
+          </TabBar>
+        </div>
+      </div>
+    )
   }
 }
 
-Layout.propTypes = {
-};
 
-export default connect()(Layout);
+export default connect((layout) => ({ layout }))(Layout);

@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import { Flex, Icon, WhiteSpace, NavBar } from 'antd-mobile';
+import { Flex, Icon, WhiteSpace, NavBar, Button } from 'antd-mobile';
 import 'antd-mobile/dist/antd-mobile.css';
 import '../../utils/iconfont/iconfont.css';
-import './index.less'
+import './index.css'
 import Avatar from '../../components/Avatar'
 
 
@@ -15,12 +15,6 @@ class Community extends Component {
         return (
             <div className="community">
 
-                <NavBar
-                    mode="dark"
-                    rightContent={[
-                        <i key="0" className="anticon_pet anticonxiangji"></i>
-                    ]}
-                >动态</NavBar>
 
                 {/**动态分类 */}
 
@@ -55,16 +49,14 @@ class Community extends Component {
                         <div className="dynamic-header">
                             <Flex className="dynamic-userinfo" justify="between">
                                 <Flex>
-                                    <Avatar></Avatar>
+                                    <Avatar src="../images/avatar.jpg" width="12vw"></Avatar>
                                     <div style={{ marginLeft: '3vw' }}>
                                         <div style={{ marginRight: '1vw', fontSize: '4.5vw' }}>猪小妹</div>
                                         <WhiteSpace size="sm" />
                                         <div>3天前</div>
                                     </div>
                                 </Flex>
-                                <div className="attention">
-                                    <i className="anticon_pet anticonadd1"></i> 关注
-                            </div>
+                                <Button className="attention"><i className="anticon_pet anticonadd1"></i> 关注</Button>
                             </Flex>
                         </div>
                         <div className="dynamic-body">
@@ -96,16 +88,14 @@ class Community extends Component {
                         <div className="dynamic-header">
                             <Flex className="dynamic-userinfo" justify="between">
                                 <Flex>
-                                    <Avatar></Avatar>
+                                    <Avatar src="../images/avatar.jpg" width="12vw"></Avatar>
                                     <div style={{ marginLeft: '3vw' }}>
                                         <div style={{ marginRight: '1vw', fontSize: '4.5vw' }}>猪小妹</div>
                                         <WhiteSpace size="sm" />
                                         <div>3天前</div>
                                     </div>
                                 </Flex>
-                                <div className="attention">
-                                    <i className="anticon_pet anticonadd1"></i> 关注
-                            </div>
+                                <Button className="attention"><i className="anticon_pet anticonadd1"></i> 关注</Button>
                             </Flex>
                         </div>
                         <div className="dynamic-body">

@@ -17,7 +17,7 @@ var jwt=require('jsonwebtoken');
  * @apiSampleRequest /api/user/register
  */
 router.post('/register', async (req, res) => {
-    let { username, password, tel } = req.body;
+    let { username,tel, password  } = req.body;
     // 查询账户是否重名
     var sql = 'SELECT * FROM users WHERE tel = ?';
     let results = await db.query(sql, [tel]);
@@ -30,8 +30,8 @@ router.post('/register', async (req, res) => {
         return;
     }
     // 无重名
-    var sql = 'INSERT INTO users (username,password,tel) VALUES (?,?,?)';
-    let { insertId, affectedRows } = await db.query(sql, [username, password, tel]);
+    var sql = 'INSERT INTO users (username,tel,password) VALUES (?,?,?)';
+    let { insertId, affectedRows } = await db.query(sql, [username, tel, password]);
 
     let playload={
         id:insertId
@@ -62,8 +62,8 @@ router.post('/register', async (req, res) => {
  */
 router.post('/login', async (req, res) => {
     let { tel, password } = req.body;
-    console.log(req);
-    let sql = 'SELECT * FROM `users` WHERE tel = ? AND password = ?';
+    console.log(tel,password);
+    let sql = `SELECT * FROM users WHERE tel = ? AND password = ?`;
     let results = await db.query(sql, [tel, password]);
 
     console.log(results);
