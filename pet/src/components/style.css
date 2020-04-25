@@ -1,0 +1,21 @@
+.petData-avatar.am-list-item .am-list-line .am-list-extra,.userData-avatar.am-list-item .am-list-line .am-list-extra {
+line-height: 0.5;
+}
+.am-list-item img {
+    height: 100%;
+}
+.commentText{
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+}
+.commentText .am-list-item .am-input-extra{
+    min-height: 44px;
+    margin-right: -4vw;
+}
+.commentText .am-button{
+    padding: 0 3vw;
+    font-size: 4vw;
+    background-color: #eee;
+}

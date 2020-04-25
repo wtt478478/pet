@@ -1,0 +1,18 @@
+.article_detail .title{
+    font-size: 5vw;
+    margin-bottom: 2vw;
+}
+
+.article_detail .detail_content{
+    text-indent:30px;
+    line-height: 1.5em;
+}
+.article_detail .detail_content div{
+    margin: 2vw 0;
+}
+
+.article_detail .detail_content img{
+    display: block;
+    width: 100%;
+    margin: 2vw 0;
+}

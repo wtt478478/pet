@@ -9,9 +9,16 @@ const app = dva();
 
 // 3. Model
 app.model(require('./models/user').default);
+app.model(require('./models/community').default);
+app.model(require('./models/layout').default);
+app.model(require('./models/pet').default);
+app.model(require('./models/upload').default);
+app.model(require('./models/article').default);
 
 // 4. Router
 app.router(require('./router').default);
 
 // 5. Start
 app.start('#root');
+
+export default app

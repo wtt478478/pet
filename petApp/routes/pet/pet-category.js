@@ -5,47 +5,56 @@ let db = require('../../config/mysql');
 const fs = require("fs");
 const path = require("path");
 /**
- * @api {get} /pet/category 获取所有宠物分类
+ * @api {get} /api/pet/category 获取所有宠物分类
  * @apiName petCategory
  * @apiGroup pet-Category
  * 
  *
- * @apiSampleRequest /pet/category
+ * @apiSampleRequest /api/category
  */
-router.get("/category", function (req, res) {
+router.get("/", async function (req, res) {
     let sql = `SELECT * FROM pets_category `;
-    db.query(sql, [], function (results, fields) {
-        //成功
-        res.json({
-            status: true,
-            msg: "success!",
-            data: results
-        });
+    let results = await db.query(sql, []);
+    console.log(results)
+    res.json({
+        status: true,
+        msg: "success!",
+        data: results
     });
 });
 
 
 
 /**
- * @api {get} /pet/category/sub 获取子级分类
+ * @api {get} /api/pet/category/sub 获取指定id分类
  * @apiName category/sub
  * @apiGroup pet-Category
  *
- * @apiParam {Number} pId 父级分类id。注：获取一级分类pId = 1，获取根分类pId = 0;
+ * @apiParam {Number} id 分类id。
  *
- * @apiSampleRequest /pet/category/sub
+ * @apiSampleRequest /api/category/detail
  */
-router.get("/sub", function (req, res) {
-    let { pId } = req.query;
-    let sql = `SELECT * FROM pets_category WHERE pId = ? `;
-    db.query(sql, [pId], function (results, fields) {
+router.get("/detail", async function (req, res) {
+    let { id } = req.query;
+    console.log(id)
+    let sql = `SELECT * FROM pets_category WHERE id = ? `;
+    let result = await db.query(sql, [id]);
+    // console.log(result)
+    if (result) {
         //成功
         res.json({
             status: true,
             msg: "success!",
-            data: results
+            data: result[0]
         });
-    });
+    }else{
+        res.json({
+            status: false,
+            msg: "fail!",
+        });
+    }
+
+
 });
 
 module.exports = router;

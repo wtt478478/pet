@@ -6,6 +6,7 @@ let pool = mysql.createPool({
 	password: 'root',
 	database: 'pet_app',
 	multipleStatements: true,
+	timezone:"08:00"
 	// debug: true,
 });
 //常规SQL

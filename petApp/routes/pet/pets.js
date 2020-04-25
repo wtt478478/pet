@@ -5,18 +5,18 @@ var db = require('../../config/mysql');
 
 
 /**
- * @api {get} /pet 获取宠物资料
+ * @api {get} /api/pet 获取宠物资料
  * @apiName PetInfo
  * @apiGroup Pet
  *
  * @apiParam { Number } id 宠物id.
  *
- * @apiSampleRequest /pet
+ * @apiSampleRequest /api/pet
  */
-router.get('/', async (req, res) => {
-    let { id } = req.query;
-    var sql = 'SELECT pet_name, user_id, pet_sex, pet_avatar, pet_varieties_id, pet_birth, pet_company_time, pet_sterilization_state, pet_weight FROM pets WHERE id = ? ';
-    let results = await db.query(sql, [id]);
+router.get('/list', async (req, res) => {
+    let { user_id } = req.query;
+    var sql = 'SELECT id, pet_name, user_id, pet_sex, pet_avatar, pet_varieties_id, pet_birth, pet_company_time, pet_sterilization_state, pet_weight FROM pets WHERE user_id = ? ';
+    let results = await db.query(sql, [user_id]);
     if (results.length == 0) {
         res.json({
             status: false,
@@ -26,12 +26,12 @@ router.get('/', async (req, res) => {
     }
     res.json({
         status: true,
-        data: results[0]
+        data: results
     });
 });
 
 /**
- * @api {put} /pet 编辑宠物资料
+ * @api {put} /api/pet 编辑宠物资料
  * @apiName PetUpdate
  * @apiGroup Pet
  *
@@ -46,12 +46,13 @@ router.get('/', async (req, res) => {
  * @apiParam { String } pet_sterilization_state 绝育状态.
  * @apiParam { number } pet_weight 体重.
  *
- * @apiSampleRequest /pet
+ * @apiSampleRequest /api/pet
  */
 
 router.put('/', async (req, res) => {
+    console.log(req);
     let { id, pet_name, user_id, pet_sex, pet_avatar, pet_varieties_id, pet_birth, pet_company_time, pet_sterilization_state, pet_weight } = req.body;
-    let sql = 'UPDATE users SET pet_name = ?,user_id = ?,pet_sex = ?,pet_avatar = ?,pet_varieties_id = ?,pet_birth = ?,pet_company_time = ?,pet_sterilization_state = ?,pet_weight = ? WHERE id = ?';
+    let sql = 'UPDATE pets SET pet_name = ?,user_id = ?,pet_sex = ?,pet_avatar = ?,pet_varieties_id = ?,pet_birth = ?,pet_company_time = ?,pet_sterilization_state = ?,pet_weight = ? WHERE id = ?';
     let { affectedRows } = await db.query(sql, [pet_name, user_id, pet_sex, pet_avatar, pet_varieties_id, pet_birth, pet_company_time, pet_sterilization_state, pet_weight, id]);
     if (!affectedRows) {
         res.json({
@@ -68,19 +69,21 @@ router.put('/', async (req, res) => {
 
 
 /**
- * @api {delete} /pet 删除账户
+ * @api {delete} /api/pet 删除账户
  * @apiName PetDelete
  * @apiGroup Pet
  *
  * @apiParam { Number } id 用户id.
  *
- * @apiSampleRequest /pet
+ * @apiSampleRequest /api/pet
  */
 
 router.delete('/', async (req, res) => {
-    let { id } = req.query;
+    let { id } = req.body;
+    console.log(res)
     let sql = 'DELETE FROM pets WHERE id = ?';
     let results = await db.query(sql, [id]);
+    console.log(results)
     res.json({
         status: true,
         msg: "删除成功"
@@ -89,7 +92,7 @@ router.delete('/', async (req, res) => {
 
 
 /**
- * @api {post} /pet/add 增加宠物
+ * @api {post} /api/pet/add 增加宠物
  * @apiName AddPet
  * @apiGroup Pet
  * @apiParam { String } pet_name 宠物名.
@@ -101,27 +104,70 @@ router.delete('/', async (req, res) => {
  * @apiParam { String } pet_sterilization_state 绝育状态.
  * @apiParam { number } pet_weight 体重.
  *
- * @apiSampleRequest /pet/add
+ * @apiSampleRequest /api/pet/add
  */
 
 router.post("/add/", async (req, res) => {
-	let { pet_name, pet_sex, pet_avatar, pet_varieties_id, pet_birth, pet_company_time, pet_sterilization_state, pet_weight } = req.body;
-	var sql =
-		'INSERT INTO pets (pet_name ,pet_sex , pet_avatar , pet_varieties_id , pet_birth , pet_company_time , pet_sterilization_state, pet_weight) VALUES (?, ? , ? , ?, ?, ?, ?, ?)';
-	let { insertId, affectedRows } = await db.query(sql, [pet_name ,pet_sex , pet_avatar , pet_varieties_id , pet_birth , pet_company_time , pet_sterilization_state, pet_weight]);
-	if (!affectedRows) {
-		res.json({
-			status: false,
-			msg: "添加失败！"
-		});
-		return;
-	}
-	res.json({
-		status: true,
-		msg: "添加成功"
-	});
+    let {user_id, pet_name, pet_sex, pet_avatar, pet_varieties_id, pet_birth, pet_company_time, pet_sterilization_state, pet_weight } = req.body;
+    var sql =
+        'INSERT INTO pets (user_id,pet_name ,pet_sex , pet_avatar , pet_varieties_id , pet_birth , pet_company_time , pet_sterilization_state, pet_weight) VALUES (?,?, ? , ? , ?, ?, ?, ?, ?)';
+    let { insertId, affectedRows } = await db.query(sql, [user_id,pet_name, pet_sex, pet_avatar, pet_varieties_id, pet_birth, pet_company_time, pet_sterilization_state, pet_weight]);
+    if (!affectedRows) {
+        res.json({
+            status: false,
+            msg: "添加失败！"
+        });
+        return;
+    }
+    res.json({
+        status: true,
+        msg: "添加成功"
+    });
 });
 
+/**
+ * @api {get} /api/pet/category 获取所有宠物分类
+ * @apiName petCategory
+ * @apiGroup pet-Category
+ * 
+ *
+ * @apiSampleRequest /api/pet/category
+ */
+router.get("/category", function (req, res) {
+    let sql = `SELECT * FROM pets_category `;
+    db.query(sql, [], function (results, fields) {
+        //成功
+        res.json({
+            status: true,
+            msg: "success!",
+            data: results
+        });
+    });
+});
+
+
+
+/**
+ * @api {get} /api/pet/category/sub 获取子级分类
+ * @apiName category/sub
+ * @apiGroup pet-Category
+ *
+ * @apiParam {Number} pId 父级分类id。注：获取一级分类pId = 1，获取根分类pId = 0;
+ *
+ * @apiSampleRequest /api/pet/category/sub
+ */
+router.get("/sub", function (req, res) {
+    let { pId } = req.query;
+    let sql = `SELECT * FROM pets_category WHERE pId = ? `;
+    db.query(sql, [pId], function (results, fields) {
+        //成功
+        res.json({
+            status: true,
+            msg: "success!",
+            data: results
+        });
+    });
+});
 
 
 module.exports = router;

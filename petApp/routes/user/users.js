@@ -3,7 +3,7 @@ var router = express.Router();
 // 数据库
 var db = require('../../config/mysql');
 
-var jwt=require('jsonwebtoken');
+var jwt = require('jsonwebtoken');
 
 /**
  * @api {post} /user/register 注册普通用户
@@ -17,7 +17,7 @@ var jwt=require('jsonwebtoken');
  * @apiSampleRequest /api/user/register
  */
 router.post('/register', async (req, res) => {
-    let { username, password, tel } = req.body;
+    let { username, tel, password } = req.body;
     // 查询账户是否重名
     var sql = 'SELECT * FROM users WHERE tel = ?';
     let results = await db.query(sql, [tel]);
@@ -30,11 +30,11 @@ router.post('/register', async (req, res) => {
         return;
     }
     // 无重名
-    var sql = 'INSERT INTO users (username,password,tel) VALUES (?,?,?)';
-    let { insertId, affectedRows } = await db.query(sql, [username, password, tel]);
+    var sql = 'INSERT INTO users (username,tel,password) VALUES (?,?,?)';
+    let { insertId, affectedRows } = await db.query(sql, [username, tel, password]);
 
-    let playload={
-        id:insertId
+    let playload = {
+        id: insertId
     };
     // 生成token
     let token = jwt.sign(playload, 'secret', { expiresIn: '24h' });
@@ -42,11 +42,11 @@ router.post('/register', async (req, res) => {
         res.json({
             msg: "注册成功！",
             status: true,
-            data:{
+            data: {
                 token,
                 id: insertId
             }
-            
+
         });
     }
 });
@@ -62,11 +62,10 @@ router.post('/register', async (req, res) => {
  */
 router.post('/login', async (req, res) => {
     let { tel, password } = req.body;
-    console.log(req);
-    let sql = 'SELECT * FROM `users` WHERE tel = ? AND password = ?';
+    console.log(tel, password);
+    let sql = `SELECT * FROM users WHERE tel = ? AND password = ?`;
     let results = await db.query(sql, [tel, password]);
 
-    console.log(results);
     if (results.length == 0) {
         res.json({
             msg: "账号或密码错误！",
@@ -76,8 +75,8 @@ router.post('/login', async (req, res) => {
     }
     let { id } = results[0];
 
-    let playload={
-        id:id
+    let playload = {
+        id: id
     }
 
     // 生成token
@@ -85,11 +84,39 @@ router.post('/login', async (req, res) => {
     res.json({
         msg: "登陆成功！",
         status: true,
-        data:{
+        data: {
             token,
             id
         }
     });
+});
+/**
+ * @api {post} /user/login/forget 用户更改密码
+ * @apiName UserLoginForget
+ * @apiGroup User
+ *
+ * @apiParam { String } tel 手机号.
+ * @apiParam { String } password 密码.
+ *
+ * @apiSampleRequest /api/user/login/forget
+ */
+router.put('/login/forget', async (req, res) => {
+    let { tel, password } = req.body;
+    console.log(tel, password);
+    let sql = `UPDATE users SET password = ? WHERE tel= ?`;
+    let { affectedRows } = await db.query(sql, [password, tel]);
+
+    if (!affectedRows) {
+        res.json({
+            status: false,
+            msg: "修改失败！"
+        });
+        return;
+    }
+    res.json({
+        status: true,
+        msg: "修改成功！"
+    })
 });
 /**
  * @api {get} /user 获取用户个人资料
@@ -140,9 +167,10 @@ router.get('/', async (req, res) => {
  */
 
 router.put('/', async (req, res) => {
+    console.log(req)
     let { id, username, sex, tel, avatar, age, city, user_des, user_job, user_haunted, user_hobby, user_lover_pet, user_petCare_time } = req.body;
     let sql = 'UPDATE users SET username = ?,sex = ?,tel = ?,avatar = ?,age = ?,city = ?,user_des = ?,user_job = ?,user_haunted = ?,user_hobby = ?,user_lover_pet = ?,user_petCare_time = ? WHERE id = ?';
-    let { affectedRows } = await db.query(sql, [username, sex, tel, avatar, age, city, user_des, user_job, user_haunted, user_hobby, user_lover_pet, user_petCare_time , id]);
+    let { affectedRows } = await db.query(sql, [username, sex, tel, avatar, age, city, user_des, user_job, user_haunted, user_hobby, user_lover_pet, user_petCare_time, id]);
     if (!affectedRows) {
         res.json({
             status: false,

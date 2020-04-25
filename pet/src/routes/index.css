@@ -49,3 +49,45 @@ a {
 .text-center{
   text-align: center;
 }
+
+.dynamic-class {
+  text-align: center;
+  padding: 3.85vw 4vw 4vw 4vw;
+}
+.dynamic-class-title{
+  font-size: 3.148vw;
+}
+.attention{
+  padding: 0 1vw;
+  height: 7vw !important;
+  line-height: 7vw !important;
+  color: #f14b24;
+  font-size: 12px;
+}
+.attention i{
+  font-size: 12px;
+}
+
+.dynamic-item{
+  padding-top: 4vw;
+}
+
+.dynamic-header{
+  margin-bottom: 2vw;
+}
+.dynamic-new-text{
+  font-size: 4.537vw;
+  line-height: 7vw;
+  padding-bottom: 2vw;
+}
+.dynamic-new-pictrue img{
+  width: 30.7vw;
+  height: 30.7vw;
+  margin-right: 1.111vw;
+}
+.dynamic-footer{
+  padding-top: 4vw;
+}
+.dynamic-option span{
+  
+}

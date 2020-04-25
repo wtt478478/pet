@@ -12,6 +12,13 @@ var indexRouter = require('./routes/index');
 
 var usersRouter = require('./routes/user/users');
 var petsRouter = require('./routes/pet/pets');
+var dynamicRouter = require('./routes/user/dynamic');
+var CommentRouter = require('./routes/user/comment');
+var ArticleRouter = require('./routes/article/article');
+var UploadRouter = require('./routes/user/upload');
+var PetCateRouter = require('./routes/pet/pet-category');
+var FollowRouter = require('./routes/user/follow');
+var FansRouter = require('./routes/user/fans');
 
 var app = express();
 
@@ -30,7 +37,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 //使用中间件验证token合法性
 app.use(expressJwt({ secret: 'secret' }).unless({
-	path: ['/', '/api/user/register', '/api/user/login'] //除了这些地址，其他的URL都需要验证
+	path: ['/', '/api/user/register', '/api/user/login','/api/dynamic/list'] //除了这些地址，其他的URL都需要验证
 }));
 // 设置跨域资源分享CORS
 app.use(cors());
@@ -38,6 +45,15 @@ app.use(cors());
 app.use('/api', indexRouter);
 app.use('/api/user', usersRouter);
 app.use('/api/pet', petsRouter);
+app.use('/api/dynamic', dynamicRouter);
+app.use('/api/comment', CommentRouter);
+app.use('/api/article', ArticleRouter);
+app.use('/api/upload', UploadRouter);
+
+app.use('/api/category', PetCateRouter);
+app.use('/api/follow', FollowRouter);
+app.use('/api/fans', FansRouter);
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
