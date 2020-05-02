@@ -1,5 +1,9 @@
 import React, { Component } from 'react';
+<<<<<<< HEAD
 import { InputItem, Button, WhiteSpace, Checkbox, Toast, } from 'antd-mobile';
+=======
+import { InputItem, Button, WhiteSpace, Checkbox,Toast, } from 'antd-mobile';
+>>>>>>> f12af79a6812b84a035430f68949009cb3c61c96
 import 'antd-mobile/dist/antd-mobile.css';
 import '../../../utils/iconfont/iconfont.css';
 import './index.css'
@@ -14,7 +18,11 @@ class Register extends Component {
     constructor(props) {
         super(props);
         this.state = {
+<<<<<<< HEAD
             isAgree: false
+=======
+            isAgree:false
+>>>>>>> f12af79a6812b84a035430f68949009cb3c61c96
         }
     }
 
@@ -29,8 +37,13 @@ class Register extends Component {
         }
     }
 
+<<<<<<< HEAD
     // 密码验证
     validatePassword = (rule, value, callback) => {
+=======
+      // 密码验证
+      validatePassword = (rule, value, callback) => {
+>>>>>>> f12af79a6812b84a035430f68949009cb3c61c96
         if (value && value.length >= 8) {
             callback();
         } else if (value.length === 0) {
@@ -51,6 +64,7 @@ class Register extends Component {
         }
     }
 
+<<<<<<< HEAD
     agreeHandle = () => {
         this.setState({
             isAgree: !this.state.isAgree
@@ -77,11 +91,43 @@ class Register extends Component {
             });
         }
 
+=======
+    agreeHandle=()=>{
+        this.setState({
+            isAgree:!this.state.isAgree
+        });
+    }
+
+    registerHandle=()=>{
+        console.log('111')
+        if(!this.state.isAgree){
+            Toast.info('请勾选协议');
+        }else{
+             this.props.form.validateFields({ force: true }, (error) => {
+            if (!error) {
+                console.log(this.props);
+                let formData = this.props.form.getFieldsValue();
+                console.log(formData);
+                this.props.dispatch({
+                    type: 'user/registerHandle',
+                    payload: formData,
+                });
+            } else {
+                console.log('请输入正确的用户信息');
+            }
+        });
+        }
+       
+>>>>>>> f12af79a6812b84a035430f68949009cb3c61c96
 
     }
 
     render() {
+<<<<<<< HEAD
         const { getFieldProps, getFieldError } = this.props.form;
+=======
+        const { getFieldProps,getFieldError } = this.props.form;
+>>>>>>> f12af79a6812b84a035430f68949009cb3c61c96
         return (
             <div className="pink-box">
                 <div className="login-box">
@@ -98,6 +144,22 @@ class Register extends Component {
                         type="text"
                         clear
                         placeholder="请输入用户名"
+                    >
+                        <i className="iconfont icon-user"></i>
+
+                    </InputItem><InputItem
+                        {...getFieldProps('tel', {
+                            rules: [
+                                { validator: this.validateTel },
+                            ],
+                        })}
+                        error={!!getFieldError('tel')}
+                        onErrorClick={() => {
+                            Toast.info(getFieldError('tel'), 1);
+                        }}
+                        type="phone"
+                        clear
+                        placeholder="请输入手机号码"
                     >
                         <i className="iconfont icon-user"></i>
 
@@ -120,6 +182,7 @@ class Register extends Component {
                     >
                         <i className="iconfont icon-password"></i>
                     </InputItem>
+<<<<<<< HEAD
                     <InputItem
                         {...getFieldProps('tel', {
                             rules: [
@@ -149,6 +212,12 @@ class Register extends Component {
 
                     <AgreeItem onChange={this.agreeHandle}>
                        同意协议 <a onClick={(e) => { e.preventDefault(); }}></a>
+=======
+                    <WhiteSpace size='md' />
+
+                    <AgreeItem onChange={this.agreeHandle}>
+                        <a onClick={(e) => { e.preventDefault();}}>同意协议</a>
+>>>>>>> f12af79a6812b84a035430f68949009cb3c61c96
                     </AgreeItem>
                     <WhiteSpace size='md' />
 
@@ -160,4 +229,8 @@ class Register extends Component {
     }
 }
 
+<<<<<<< HEAD
 export default connect((user) => ({ user }))(createForm()(Register));
+=======
+export default connect((user)=>({user}))(createForm()(Register));
+>>>>>>> f12af79a6812b84a035430f68949009cb3c61c96

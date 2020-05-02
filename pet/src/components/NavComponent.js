@@ -1,5 +1,10 @@
+<<<<<<< HEAD
 import React from 'react';
 import { NavBar } from 'antd-mobile';
+=======
+import React, { Component } from 'react';
+import { NavBar, Icon } from 'antd-mobile';
+>>>>>>> f12af79a6812b84a035430f68949009cb3c61c96
 import PropTypes from 'prop-types';
 
 const NavComponent = ({ navGoBack, navkey, navLeftContent, navRightContent, navTitle }) => {

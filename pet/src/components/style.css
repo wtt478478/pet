@@ -1,8 +1,13 @@
+<<<<<<< HEAD
 .petData-avatar.am-list-item .am-list-line .am-list-extra,.userData-avatar.am-list-item .am-list-line .am-list-extra {
+=======
+.petData-avatar.am-list-item .am-list-line .am-list-extra {
+>>>>>>> f12af79a6812b84a035430f68949009cb3c61c96
 line-height: 0.5;
 }
 .am-list-item img {
     height: 100%;
+<<<<<<< HEAD
 }
 .commentText{
     position: fixed;
@@ -19,3 +24,6 @@ line-height: 0.5;
     font-size: 4vw;
     background-color: #eee;
 }
+=======
+}
+>>>>>>> f12af79a6812b84a035430f68949009cb3c61c96

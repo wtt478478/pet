@@ -1,8 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'dva';
+<<<<<<< HEAD
 import { TabBar, SearchBar, Button } from 'antd-mobile';
 import PropTypes from 'prop-types';
 import { Link } from 'dva/router'
+=======
+import { TabBar, SearchBar } from 'antd-mobile';
+import PropTypes from 'prop-types';
+>>>>>>> f12af79a6812b84a035430f68949009cb3c61c96
 
 import 'antd-mobile/dist/antd-mobile.css';
 import '../../utils/iconfont/iconfont.css';
@@ -11,7 +16,11 @@ import './index.css';
 import User from "../user/index";
 import PetCare from "../petCare/index";
 import Community from "../community/index";
+<<<<<<< HEAD
 // import Mall from "../mall/index";
+=======
+import Mall from "../mall/index";
+>>>>>>> f12af79a6812b84a035430f68949009cb3c61c96
 import NavComponent from "../../components/NavComponent";
 
 
@@ -23,6 +32,7 @@ class Layout extends Component {
       selectedTab: 'communityTab',
       hidden: false,
       fullScreen: false,
+<<<<<<< HEAD
       navkey: 'community',
       leftContent: [],
       rightContent: [<a style={{color:'#fff'}} onClick={this.releaseHandle}><i key="0" className="anticon_pet anticonxiangji"></i></a>],
@@ -39,6 +49,19 @@ class Layout extends Component {
     this.props.history.push('/index/addDynamic')
   }
   // 渲染内容
+=======
+      navkey:'community',
+      leftContent: [],
+      rightContent: [<i key="0" className="anticon_pet anticonxiangji"></i>],
+      navTitle: '动态'
+    };
+  }
+
+  goBack = () => {
+    console.log('goback');
+  }
+
+>>>>>>> f12af79a6812b84a035430f68949009cb3c61c96
   renderContent(pageText) {
     switch (pageText) {
       case 'community':
@@ -84,7 +107,11 @@ class Layout extends Component {
           navTitle={this.state.navTitle}
         />
 
+<<<<<<< HEAD
         <div style={this.state.fullScreen ? { position: 'fixed', height: '100%', width: '100%', top: 0 } : { height: 'calc(100vh - 45px)', zIndex: 9 }}>
+=======
+        <div style={this.state.fullScreen ? { position: 'fixed', height: '100%', width: '100%', top: 0 } : { height: 'calc(100vh - 45px)' }}>
+>>>>>>> f12af79a6812b84a035430f68949009cb3c61c96
 
 
           <TabBar
@@ -103,12 +130,20 @@ class Layout extends Component {
               onPress={() => {
                 this.setState({
                   selectedTab: 'communityTab',
+<<<<<<< HEAD
                   navkey: 'community',
                   leftContent: [],
                   rightContent: [<a style={{color:'#fff'}}  onClick={this.releaseHandle}><i key="0" className="anticon_pet anticonxiangji"></i></a>],
                   navTitle: '动态'
                 });
                 // this.props.history.push('/index/community');
+=======
+                  navkey:'community',
+                  leftContent: [],
+                  rightContent: [<i key="0" className="anticon_pet anticonxiangji"></i>],
+                  navTitle: '动态'
+                })
+>>>>>>> f12af79a6812b84a035430f68949009cb3c61c96
               }}
               data-seed="logId"
             >
@@ -124,18 +159,30 @@ class Layout extends Component {
               onPress={() => {
                 this.setState({
                   selectedTab: 'petCareTab',
+<<<<<<< HEAD
                   navkey: 'petCare',
                   leftContent: [],
                   rightContent: [],
                   navTitle: '宠物知识'
                 });
                 // this.props.history.push('/index/petCare');
+=======
+                  navkey:'petCare',
+                  leftContent: [],
+                  rightContent: [],
+                  navTitle: '宠物知识'
+                })
+>>>>>>> f12af79a6812b84a035430f68949009cb3c61c96
               }}
               data-seed="logId1"
             >
               {this.renderContent('petCare')}
             </TabBar.Item>
+<<<<<<< HEAD
             {/* <TabBar.Item
+=======
+            <TabBar.Item
+>>>>>>> f12af79a6812b84a035430f68949009cb3c61c96
               icon={<i className="anticon_pet anticoncart" style={{ fontSize: '6vw' }}></i>}
 
               selectedIcon={<i className="anticon_pet anticoncart" style={{ fontSize: '6vw', color: '#f04d3c' }}></i>}
@@ -164,7 +211,11 @@ class Layout extends Component {
               }}
             >
               {this.renderContent('mall')}
+<<<<<<< HEAD
             </TabBar.Item>*/}
+=======
+            </TabBar.Item>
+>>>>>>> f12af79a6812b84a035430f68949009cb3c61c96
             <TabBar.Item
               icon={<i className="anticon_pet anticoniconfinder_rabbit-animal-pet-wild-domestic_" style={{ fontSize: '6vw' }}></i>}
 
@@ -176,7 +227,11 @@ class Layout extends Component {
               onPress={() => {
                 this.setState({
                   selectedTab: 'userTab',
+<<<<<<< HEAD
                   navkey: 'user',
+=======
+                  navkey:'user',
+>>>>>>> f12af79a6812b84a035430f68949009cb3c61c96
                   leftContent: [
                     <i key="0" className="anticon_pet anticonerweima"></i>
                   ],
@@ -184,8 +239,12 @@ class Layout extends Component {
                     <i key="1" className="anticon_pet anticonfriendaddfill" ></i>
                   ],
                   navTitle: '个人中心'
+<<<<<<< HEAD
                 });
                 // this.props.history.push('/index/user');
+=======
+                })
+>>>>>>> f12af79a6812b84a035430f68949009cb3c61c96
               }}
             >
               {this.renderContent('user')}

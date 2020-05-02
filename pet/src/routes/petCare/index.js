@@ -1,6 +1,11 @@
 import React, { Component } from 'react';
+<<<<<<< HEAD
 import { Icon, Flex, List, WhiteSpace } from 'antd-mobile';
 import { Link } from 'dva/router'
+=======
+import { NavBar, Icon, Flex, List, WhiteSpace } from 'antd-mobile';
+import { Link, Route } from 'dva/router'
+>>>>>>> f12af79a6812b84a035430f68949009cb3c61c96
 import 'antd-mobile/dist/antd-mobile.css';
 import '../../utils/iconfont/iconfont.css';
 import './index.css'
@@ -11,6 +16,7 @@ import Avatar from '../../components/Avatar'
 import { connect } from 'dva'
 
 const url = 'http://localhost:3000';
+
 
 class PetCare extends Component {
     constructor(props) {
@@ -68,6 +74,7 @@ class PetCare extends Component {
                         </div>
                     </Flex>
                     <List className="growth-list">
+<<<<<<< HEAD
                         {
                             this.state.petList.map((item, index) => {
                                 return (
@@ -94,6 +101,33 @@ class PetCare extends Component {
                             })
                         }
 
+=======
+                        <Item className="bc-white pet-padding growth-item">
+
+                            <Flex justify="between" className="pet-padding text-center">
+                                <Flex style={{ marginBottom: "3vw" }}>
+                                    <Avatar src="../images/avatar.jpg" width="18vw"></Avatar>
+                                    <div style={{ marginLeft: "4vw" }}>
+                                        <div style={{ marginBottom: "3vw", fontSize: "4.352vw" }}>小白 <i style={{ color: "#4ca4f8" }} className="anticon_pet anticonCatFootprint"></i></div>
+                                        <div>
+                                            <Link to="/index/petData">
+                                                <span style={{ verticalAlign: 'middle' }} >设置陪伴时间</span><Icon type="right" style={{ verticalAlign: 'middle' }} />
+                                            </Link>
+
+                                        </div>
+                                    </div>
+                                </Flex>
+                                <div>
+                                    <Link to="/index/petDiary">
+                                        <div style={{ textAlign: 'center' }} ><i><img style={{ width: "4vw" }} src="../images/diary.png" /></i></div>
+                                        <WhiteSpace size="sm" />
+                                        <div>写日记</div>
+                                    </Link>
+                                </div>
+
+                            </Flex>
+                        </Item>
+>>>>>>> f12af79a6812b84a035430f68949009cb3c61c96
                     </List>
 
                 </div>
@@ -174,7 +208,11 @@ class PetCare extends Component {
 
                 <WhiteSpace size="lg" />
 
+<<<<<<< HEAD
             </div >
+=======
+            </div>
+>>>>>>> f12af79a6812b84a035430f68949009cb3c61c96
         );
     }
 }

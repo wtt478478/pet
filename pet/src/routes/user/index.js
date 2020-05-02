@@ -49,6 +49,7 @@ class User extends Component {
             <div className="pet-user">
 
                 { /** 个人主页 */}
+<<<<<<< HEAD
                 <Link to={
                     {
                         pathname: `/index/userData`,
@@ -68,6 +69,21 @@ class User extends Component {
                                     <div>
                                         手机号:<span style={{ marginLeft: '3vw' }}>{this.state.userInfo ? this.state.userInfo.tel : ''}</span>
                                     </div>
+=======
+
+                <Flex className="homePage pet-padding bc-white" justify="between">
+                    <div>
+                        <Flex>
+                            <Avatar  src="../images/avatar.jpg" width="18vw"></Avatar>
+                            <div style={{ marginLeft: '3vw' }}>
+                                <div>
+                                    <span style={{ marginRight: '1vw', fontSize: '4.5vw' }}>好好吃饭</span>
+                                    <span><i style={{ color: 'pink' }} className="anticon_pet anticongender-female"></i></span>
+                                </div>
+                                <WhiteSpace size="sm" />
+                                <div>
+                                    宠号:<span style={{ marginLeft: '3vw' }}>4691736</span>
+>>>>>>> f12af79a6812b84a035430f68949009cb3c61c96
                                 </div>
                             </Flex>
                         </div>

@@ -5,6 +5,7 @@ import Layout from './routes/layout/index'
 import Login from './routes/login_register/login/index';
 import Forget from './routes/login_register/login/forgetPassword/index'
 import Register from './routes/login_register/register/index';
+<<<<<<< HEAD
 import PetData from './routes/petCare/pet_data'
 import AddPet from './routes/petCare/addPet/index'
 import UserData from './routes/user/user_data';
@@ -65,6 +66,9 @@ import AddDynamic from './components/addDynamic';
 // ]
 
 
+=======
+import PetData from './components/data/pet_data'
+>>>>>>> f12af79a6812b84a035430f68949009cb3c61c96
 
 
 function RouterConfig({ history }) {
@@ -72,6 +76,7 @@ function RouterConfig({ history }) {
     <Router history={history}>
       <Switch>
         <Route path="/" exact component={Login} />
+<<<<<<< HEAD
         <Route path="/forget" exact component={Forget} />
         <Route path="/register" exact component={Register} />
         <Route path="/index" exact component={Layout} />
@@ -87,6 +92,11 @@ function RouterConfig({ history }) {
         <Route path="/index/myfans" exact component={myFans} />
         <Route path="/index/addDynamic" exact component={AddDynamic} />
 
+=======
+        <Route path="/register" exact component={Register} />
+        <Route path="/index" exact component={Layout} />
+        <Route path="/index/petData" exact  component={PetData} />
+>>>>>>> f12af79a6812b84a035430f68949009cb3c61c96
       </Switch>
     </Router>
   );

@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 import { InputItem, Button, WhiteSpace, Toast } from 'antd-mobile';
+<<<<<<< HEAD
 import { Link } from "dva/router";
+=======
+import { Link, routerRedux } from "dva/router";
+>>>>>>> f12af79a6812b84a035430f68949009cb3c61c96
 import { connect } from 'dva';
 import 'antd-mobile/dist/antd-mobile.css';
 import '../../../utils/iconfont/iconfont.css';
@@ -12,6 +16,10 @@ class Login extends Component {
     constructor(props) {
         super(props);
         this.state = {
+<<<<<<< HEAD
+=======
+
+>>>>>>> f12af79a6812b84a035430f68949009cb3c61c96
         }
     }
 
@@ -43,7 +51,12 @@ class Login extends Component {
 
         this.props.form.validateFields({ force: true }, (error) => {
             if (!error) {
+<<<<<<< HEAD
+=======
+                console.log(this.props);
+>>>>>>> f12af79a6812b84a035430f68949009cb3c61c96
                 let formData = this.props.form.getFieldsValue();
+                console.log(formData);
                 this.props.dispatch({
                     type: 'user/loginHandle',
                     payload: formData,

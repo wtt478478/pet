@@ -1,8 +1,14 @@
+<<<<<<< HEAD
 import { login, register, userInfo, userEdit, userFollow, userFans } from "../services/user";
 import { routerRedux } from 'dva/router'
 import { Toast } from "antd-mobile";
 import { object } from "prop-types";
 import { userDynamicList } from "../services/dynamic";
+=======
+import { login, register } from "../services/user";
+import { routerRedux } from 'dva/router'
+import { Toast } from "antd-mobile";
+>>>>>>> f12af79a6812b84a035430f68949009cb3c61c96
 export default {
 
   namespace: 'user',
@@ -18,6 +24,7 @@ export default {
   },
 
   effects: {
+<<<<<<< HEAD
     *loginHandle({ payload, callback }, { call, put }) {  // eslint-disable-line
       const { status, data, msg } = yield call(login, payload);
       sessionStorage.token = data.token;
@@ -71,4 +78,22 @@ export default {
       return payload
     }
   }
+=======
+    *loginHandle({ payload }, { call, put }) {  // eslint-disable-line
+      const { data } = yield call(login, payload);
+      if (data.status) {
+        yield put(routerRedux.push('/index'));
+      }
+    },
+    *registerHandle({ payload }, { call, put }) {  // eslint-disable-line
+      const { data } = yield call(register, payload);
+      console.log(data);
+      if (data.status) {
+        yield put(routerRedux.push('/login'));
+      }else{
+        Toast.info(data.msg);
+      }
+    },
+  },
+>>>>>>> f12af79a6812b84a035430f68949009cb3c61c96
 };

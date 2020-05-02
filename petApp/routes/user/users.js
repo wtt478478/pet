@@ -17,7 +17,11 @@ var jwt = require('jsonwebtoken');
  * @apiSampleRequest /api/user/register
  */
 router.post('/register', async (req, res) => {
+<<<<<<< HEAD
     let { username, tel, password } = req.body;
+=======
+    let { username,tel, password  } = req.body;
+>>>>>>> f12af79a6812b84a035430f68949009cb3c61c96
     // 查询账户是否重名
     var sql = 'SELECT * FROM users WHERE tel = ?';
     let results = await db.query(sql, [tel]);
@@ -62,7 +66,11 @@ router.post('/register', async (req, res) => {
  */
 router.post('/login', async (req, res) => {
     let { tel, password } = req.body;
+<<<<<<< HEAD
     console.log(tel, password);
+=======
+    console.log(tel,password);
+>>>>>>> f12af79a6812b84a035430f68949009cb3c61c96
     let sql = `SELECT * FROM users WHERE tel = ? AND password = ?`;
     let results = await db.query(sql, [tel, password]);
 
